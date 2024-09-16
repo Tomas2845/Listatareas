@@ -5,7 +5,7 @@ const Lista = ({ arrayTareas }) => {
   return (
     <ListGroup>
       {arrayTareas.map((tarea, indice ) => (
-        <Itemtarea key={indice}></Itemtarea>
+        <Itemtarea key={indice} tarea={tarea}></Itemtarea>
       ))}
     </ListGroup>
   );
