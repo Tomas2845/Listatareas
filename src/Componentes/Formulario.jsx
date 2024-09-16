@@ -3,18 +3,30 @@ import Form from "react-bootstrap/Form";
 import Lista from "./Lista";
 import Itemtarea from "./Itemtarea";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Formulario = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
+  const [arrayTareas, setarrayTareas] = useState ([]);  // estado creado 
+
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data.tarea);
+
+    // guardar la tarea en el estado 
+    setarrayTareas([...arrayTareas, data.tarea])
+    // limpiar formulario 
+     reset();
   };
+
+   
+
   return (
     <section>
       <Form onSubmit={handleSubmit(onSubmit)} className="mb-3">
@@ -42,10 +54,8 @@ const Formulario = () => {
           {errors.tarea?.message}
         </Form.Text>
       </Form>
-      <Lista></Lista>
-      <Lista></Lista>
-      <Lista></Lista>
-      <Lista></Lista>
+      <Lista arrayTareas={arrayTareas}></Lista>
+      
     </section>
   );
 };
